@@ -1,7 +1,7 @@
 {
   "name": "blockchain-me-contract",
   "license": "GNU GPL",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "scripts": {
     "prettier": "prettier --write 'contracts/**/*.sol'",
     "contract": "npx hardhat compile",
@@ -18,5 +18,8 @@
     "prettier-plugin-solidity": "*",
     "solhint": "^3.3.6",
     "solhint-plugin-prettier": "^0.0.5"
+  },
+  "dependencies": {
+    "chai": "^4.3.6"
   }
 }

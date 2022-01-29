@@ -19,6 +19,10 @@ Make sure to format the code with `npm run prettier`, if you have prettier the f
 - This runs the deploy script and adds a flag to the CLI that we would like to deploy to our local network: `npx hardhat run scripts/deploy.js --network localhost`
 - This Runs the deploy scripts in the scripts folder and deploys to the selected environment: `npx hardhat run scripts/deploy.js --network ropsten`
 
+## Testing
+
+- Run `npx hardhat test` to run the tests located in the test folder
+
 ## Licensing
 
-The primary license for BlockchainME Contract is the Business Source License 1.1 (`BUSL-1.1`), see [`LICENSE`](./LICENSE).
+The primary license for BlockchainME Contract is the gnu general public license version 3 (`GNU GPL`), see [`LICENSE`](./LICENSE).

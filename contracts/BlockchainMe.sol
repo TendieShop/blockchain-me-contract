@@ -8,40 +8,64 @@ import "./BMEToken.sol";
 
 contract BlockchainME is ERC721URIStorage {
     // Init counter to increment
-    uint256 public itemId = 0;
-    // Init items struct array
-    mapping(uint256 => Item) public items;
-    // Item struct
-    struct Item {
+    uint256 public postId = 0;
+    // Init posts struct array
+    mapping(uint256 => Post) public posts;
+    // Init rank string (legendary, epic, rare, uncommon, common)
+    string public rank = "";
+    // Post struct
+    struct Post {
         uint256 id;
         string uri;
+        string rank;
         address creator;
     }
-    // Init event to log item id
-    event CreatedItem(
-        uint256 indexed id,
+    // Init event to log post id
+    event MintedPost(
+        uint256 id,
         string indexed uri,
+        string indexed rank,
         address indexed creator
     );
 
     // TODO make this constructor payable, send the BME ERC20 token as a reward for NFT creation
     constructor() ERC721("BlockchainME", "BME") {}
 
-    function createItem(string memory _uri) public {
+    // TODO verify that the creator of this contract receives the ETH
+    function mintPost(string memory _uri) public payable returns (uint256) {
         // Verify the creator's address existence
         require(msg.sender != address(0), "A valid ETH address is required");
         // Verify the existence of the uri
         require(bytes(_uri).length > 0, "A URI is required");
-
-        // Increment item id
-        itemId++;
-        // Mint item
-        _mint(msg.sender, itemId);
+        // Verify payment if the post is a genisis post
+        if (postId <= 10000) {
+            require(
+                msg.value >= 0.05 ether,
+                "A minimum of 0.05 ETH is required to mint a post"
+            );
+        }
+        // Conditionally update rank
+        if (postId <= 100) {
+            rank = "legendary";
+        } else if (postId <= 1000) {
+            rank = "epic";
+        } else if (postId <= 4000) {
+            rank = "rare";
+        } else if (postId <= 10000) {
+            rank = "uncommon";
+        } else {
+            rank = "common";
+        }
+        // Increment post id
+        postId++;
+        // Mint post
+        _mint(msg.sender, postId);
         // Set token uri
-        _setTokenURI(itemId, _uri);
-        // Add item to array
-        items[itemId] = Item(itemId, _uri, msg.sender);
-        // Log item id
-        emit CreatedItem(itemId, _uri, msg.sender);
+        _setTokenURI(postId, _uri);
+        // Add post to array
+        posts[postId] = Post(postId, _uri, rank, msg.sender);
+        // Log post id
+        emit MintedPost(postId, _uri, rank, msg.sender);
+        return postId;
     }
 }
