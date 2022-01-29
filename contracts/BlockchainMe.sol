@@ -24,7 +24,7 @@ contract BlockchainME is ERC721URIStorage {
         address indexed creator
     );
 
-    // TODO: make this constructor payable, send the BME ERC20 token as a reward for NFT creation
+    // TODO make this constructor payable, send the BME ERC20 token as a reward for NFT creation
     constructor() ERC721("BlockchainME", "BME") {}
 
     function createItem(string memory _uri) public {
