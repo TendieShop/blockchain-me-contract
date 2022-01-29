@@ -1,0 +1,22 @@
+{
+  "name": "blockchain-me-contract",
+  "license": "GNU GPL",
+  "version": "0.2.0",
+  "scripts": {
+    "prettier": "prettier --write 'contracts/**/*.sol'",
+    "contract": "npx hardhat compile",
+    "node": "npx hardhat node",
+    "deployLocal": "npx hardhat run scripts/deploy.js --network localhost",
+    "deployRopsten": "npx hardhat run scripts/deploy.js --network ropsten"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "^4.2.0",
+    "dotenv": "^10.0.0",
+    "hardhat": "^2.4.0",
+    "prettier": "^2.3.1",
+    "prettier-plugin-solidity": "*",
+    "solhint": "^3.3.6",
+    "solhint-plugin-prettier": "^0.0.5"
+  }
+}
