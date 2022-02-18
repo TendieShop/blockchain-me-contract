@@ -14,10 +14,10 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const BlockchainMe = await hre.ethers.getContractFactory("BlockchainME");
-  const blockchainMe = await BlockchainMe.deploy();
-  await blockchainMe.deployed();
-  console.log("BlockchainME deployed to:", blockchainMe.address);
+  const BlockchainME = await hre.ethers.getContractFactory("BlockchainME");
+  const blockchainME = await BlockchainME.deploy();
+  await blockchainME.deployed();
+  console.log("BlockchainME deployed to:", blockchainME.address);
 
   // We get the token to deploy
   const Token = await hre.ethers.getContractFactory("BMEToken");
