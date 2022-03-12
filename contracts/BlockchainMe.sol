@@ -8,11 +8,11 @@ import "./BMEToken.sol";
 
 contract BlockchainME is ERC721URIStorage {
     // Init counter to increment
-    uint256 public postId = 0;
+    uint256 public postId;
     // Init posts struct array
     mapping(uint256 => Post) public posts;
     // Init rank string (legendary, epic, rare, uncommon, common)
-    string public rank = "";
+    string public rank;
     // Post struct
     struct Post {
         uint256 id;
@@ -44,6 +44,8 @@ contract BlockchainME is ERC721URIStorage {
                 "A minimum of 0.05 ETH is required to mint a post"
             );
         }
+        // Increment post id
+        postId++;
         // Conditionally update rank
         if (postId <= 100) {
             rank = "legendary";
@@ -56,8 +58,6 @@ contract BlockchainME is ERC721URIStorage {
         } else {
             rank = "common";
         }
-        // Increment post id
-        postId++;
         // Mint post
         _mint(msg.sender, postId);
         // Set token uri
