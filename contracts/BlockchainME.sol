@@ -37,7 +37,7 @@ contract BlockchainME is ERC721URIStorage {
         require(msg.sender != address(0), "A valid ETH address is required");
         // Verify the existence of the uri
         require(bytes(_uri).length > 0, "A URI is required");
-        // Verify payment if the post is a genisis post
+        // Verify payment if the post is a genesis post
         if (postId <= 10000) {
             require(
                 msg.value >= 0.05 ether,
